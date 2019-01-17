@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+Taschenrechner
+</title>
+<head>
+<body>
+<h1 align = 'center'> Taschenrechner</h1>
+<style>
+body{
+background-color: beige;
+}
+button{
+width : 25 px;
+ padding: 30px;
+ font-size: 20px;
+ border-radius: 30%;
+ text-align: center;
+ 
+ box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+ 
+}
+button:hover{
+background-color: beige;
+}
+table{
+ background: linear-gradient(black, grey);
+border: 8px solid grey;
+border-style: inset;
+}
+</style>
+<script>
+function symClick(number){
+var elem = document.getElementById("anzeige");
+elem.value = elem.value + number;
+}
+function calc()
+{
+var elem = document.getElementById("anzeige");
+var expression = elem.value;
+elem.value = eval(expression);
+}
+</script>
+<table align ='center'>
+<tr>
+<td colspan = "3"><input type = 'text' id ='anzeige'/></td>
+<td><button type = 'button' onclick = ' calc()'> = </button></td>
+</tr>
+<tr>
+<td><button type = 'button'onclick = 'symClick(&radic)'> &radic; </button></td>
+<td><button type = 'button'onclick = 'symClick(7)'> 7 </button></td>
+<td><button type = 'button'onclick = 'symClick(8)'> 8 </button></td>
+<td><button type = 'button'onclick = 'symClick(9)'> 9 </button></td>
+<td><button type = 'button'onclick = 'symClick(" + ")'> + </button></td>
+</tr>
+<tr>
+
+<td><button type = 'button'onclick = 'symClick(4)'> 4 </button></td>
+<td><button type = 'button'onclick = 'symClick(5)'> 5 </button></td>
+<td><button type = 'button'onclick = 'symClick(6)'> 6 </button></td>
+<td><button type = 'button'onclick = 'symClick(" - ")'> - </button></td>
+</tr>
+<tr>
+<td><button type = 'button'onclick = 'symClick(1)'> 1 </button></td>
+<td><button type = 'button'onclick = 'symClick(2)'> 2 </button></td>
+<td><button type = 'button'onclick = 'symClick(3)'> 3 </button></td>
+<td><button type = 'button'onclick = 'symClick(" * ")'> * </button></td>
+</tr>
+<tr>
+<td><button type = 'button'onclick = 'symClick(" ( ")'> ( </button></td>
+<td><button type = 'button'onclick = 'symClick(0)'> 0 </button></td>
+<td><button type = 'button'onclick = 'symClick(" ) ")'> ) </button></td>
+<td><button type = 'button'onclick = 'symClick(" / ")'> / </button></td>
+</tr>
+
+
+</body>
+</html>

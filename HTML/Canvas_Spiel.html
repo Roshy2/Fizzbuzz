@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+    
+    
+    <head>
+        <title>Game</title>
+    </head>
+    
+    
+    
+    <body onload="startGame()">
+        
+        <canvas id="cv" width="400" height="200" style="border:1px solid #000000;">
+        </canvas>
+        
+        <button onclick="myGamePiece.up()">Up</button>
+        <button onclick="myGamePiece.down()">Down</button>
+        <button onclick="myGamePiece.left()">Left</button>
+        <button onclick="myGamePiece.right()">Right</button>
+        <button onclick="border.move()">Borders move</button>
+        <button onclick="runGame(true)">Start</button>
+    
+    </body>
+    
+    
+    
+    <script>
+        var myGameArea;
+        var myGamePiece;
+        var border;
+        var bordersmove;
+        
+        
+        
+        function GameArea(canvas, context) {
+            this.canvas = canvas;
+            this.context = context;
+        }
+        
+        
+        
+        function startGame() { 
+            var elem = document.getElementById("cv");
+            myGameArea = new GameArea(elem, elem.getContext("2d"));
+            myGamePiece = new rec (30, 30, "red", 10, 10);
+            myGamePiece.draw();
+            
+            border = new hindernisse();
+            border.init();
+            border.draw();
+        }
+        
+        
+        
+        function runGame() {
+            bordersmove = setInterval(alertFunc, 500);
+        }
+        
+        
+        
+        function alertFunc() {
+            if (!border.over()) {
+                border.move();
+            }
+        }
+        
+        
+        
+        function overlap(r1, r2) {
+            var r1_min_x = r1.x;
+            var r1_max_x = r1.x + r1.width;
+            var r1_min_y = r1.y;
+            var r1_max_y = r1.y + r1.height;
+            
+            var r2_min_x = r2.x;
+            var r2_max_x = r2.x + r2.width;
+            var r2_min_y = r2.y;
+            var r2_max_y = r2.y + r2.height;
+            
+            var no_x = r1_max_x < r2_min_x || r1_min_x > r2_max_x
+            var no_y = r1_max_y < r2_min_y || r1_min_y > r2_max_y
+            
+            return ! (no_x || no_y)
+        }
+        
+        
+        
+        function rec(width, height, color, x, y) { 
+            this.width = width;
+            this.height = height;
+            this.color = color;
+            this.x = x;
+            this.y = y;
+            
+            this.draw = function() {
+                var ctx = myGameArea.context;
+                ctx.fillStyle = this.color;
+                ctx.fillRect(this.x, this.y, this.width, this.height);
+            }
+            
+            this.clear = function() {
+                ctx = myGameArea.context;
+                ctx.clearRect(this.x, this.y, this.width, this.height);
+            }
+            
+            this.up = function() {
+                this.clear();
+                this.y -= 2;
+                this.draw();
+            }
+            
+            this.down = function() {
+                this.clear();
+                this.y += 2;
+                this.draw();
+            }
+            
+            this.left = function() {
+                this.clear();
+                this.x -= 2;
+                this.draw();
+            }
+            
+            this.right = function() {
+                this.clear();
+                this.x += 2;
+                this.draw();
+            }
+        }
+        
+        
+        
+        function hindernisse() {
+            this.borders = [];
+            
+            this.init = function() {
+                this.borders.push(new rec(10, 70, "green", 200, 0));
+                this.borders.push(new rec(10, 100, "green", 200, 120));
+                this.borders.push(new rec(10, 100, "green", 250, 120));
+            }
+            
+            this.draw = function() {
+                for (var i = 0; i < this.borders.length; i++) {
+                    var b = this.borders[i];
+                    b.draw();
+                }
+            }
+            
+            this.move = function() {
+                for (var i = 0; i < this.borders.length; i++) {
+                    var b = this.borders[i];
+                    b.left();
+                }
+            }
+			
+            
+            this.over = function() {
+                for (var i = 0; i < this.borders.length; i++) {
+                    var r = this.borders[i];
+                    if (overlap(r, myGamePiece)) {
+                        alert('Kollision!');
+                        clearInterval(bordersmove);
+                    }
+                }
+            }
+        }
+        
+        
+           
+    </script>
+    
+    
+    
+    <style>
+        
+        
+        
+    </style>
+    
+    
+    
+</html>
