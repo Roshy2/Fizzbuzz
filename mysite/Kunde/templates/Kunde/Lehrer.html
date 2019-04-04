@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lehrer</title>
+<meta charset="utf-8"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="main.css"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<!--
+<style>
+    body {
+        font-family: verdana;
+        background-color: aliceblue;
+    }
+</style>
+-->
+
+<body>
+
+    <nav class="nav-extended blue">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">Lehrer</a>
+            
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+                <i class="material-icons">add</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/accounts/logout">Logout</a></li>
+                <li><a href=""><i class="material-icons">refresh</i></a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="Lehrer.html">Lehrer</a></li>
+            <li><a href="Schueler.html">Schueler</a></li>
+            <li><a href="seite.html">Seite</a></li>
+        </ul>
+<br>
+<p>Servus Herr Lehrer</p>
+
+
+<ul >
+        <div class="collection">
+                <ul>
+                {% for Unterricht in list2 %}
+                    <li class="a1" >
+                        <a href="{% url 'Kunde:AlleSchueler' Unterricht.id %}" class="collection-item">{{ Unterricht.Klasse.Name }} {{ Unterricht.Fach.Name }}</a>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+</ul>
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <footer class="page-footer blue">
+            <div class="container">
+                <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">So macht das Lernen Spaß</h5>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                    <li><a class="grey-text text-lighten-3" href="https://www.youtube.com/">youtube</a></li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                © 2019 Copyright Sebastian Pilz and Roshy Moongathottathil
+                </div>
+            </div>
+    </footer>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
+</script>
+<script src="function.js">
+</script>
+</body>
+
+</html>

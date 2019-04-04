@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Anmeldung</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link rel="stylesheet" type="text/css" href="main.css"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!--
+<style>
+    .header {
+        font-family: verdana;
+        text-align: center;
+        padding: 20px;
+        background-color:cornflowerblue;
+        border-radius: 25px;
+        margin-bottom: 10px;
+    }
+
+    body {
+        font-family: verdana;
+        background-color: aliceblue;
+    }
+    
+</style>-->
+</head>
+<body>
+
+
+
+
+
+
+
+<nav class="nav-extended blue">
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Anmeldung</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+            <i class="material-icons">add</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href=""><i class="material-icons">refresh</i></a></li>
+        </ul>
+    </div>
+</nav>
+
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="Lehrer.html">Lehrer</a></li>
+        <li><a href="Schueler.html">Schueler</a></li>
+        <li><a href="seite.html">Seite</a></li>
+    </ul>
+<br>
+{% if form.errors %}
+  <p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+  {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+  {% else %}
+    <p>Please login to see this page.</p>
+  {% endif %}
+{% endif %}
+<div class="row">
+ <form class="col s12" method="post" action="{% url 'login' %}">
+   {% csrf_token %}
+    <div class="row">
+    <div class="input-field col s12">
+        <label id="email" type="email" class="validate"for="email"></label>username{{ form.username }}
+    </div>
+    </div>
+    <div class="row">
+    <div class="input-field col s12">
+        <label id="password" type="password" class="validate" for="password"></label>password{{ form.password }}
+    </div>
+    </div>
+<br><br>
+<input class="waves-effect waves-light btn blue" Id="Home" type="submit" value="login" />
+<input type="hidden" name="next" value="{{ next }}" />
+<br>
+{# Assumes you setup the password_reset view in your URLconf #}
+<p><a class="waves-effect waves-light btn blue" Id="Home" href="{% url 'password_reset' %}">Lost password?</a></p>
+</form>
+</div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> 
+<footer class="page-footer blue">
+        <div class="container">
+            <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">So macht das Lernen Spaß</h5>
+                <p class="grey-text text-lighten-4"></p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                <li><a class="grey-text text-lighten-3" href="https://www.youtube.com/">Youtube</a></li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+            © 2019 Copyright Sebastian Pilz and Roshy Moongathottathil
+            </div>
+        </div>
+</footer>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
+</script>
+<script src="function.js">
+</script>
+</body>
+</html>
